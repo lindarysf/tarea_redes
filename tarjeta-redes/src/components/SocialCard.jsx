@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function SocialCard() {
+  // Estado para los likes comenzando en un número exacto
+  const [likes, setLikes] = useState(1240);
+
+  const handleLike = () => {
+    setLikes(prev => prev + 1);
+  };
+
   return (
     <div className="w-full max-w-md bg-white border border-gray-300 rounded-3xl shadow-2xl overflow-hidden my-6">
       
-      {/* 1. HEADER DE LA TARJETA (Estilo Instagram) */}
+      {/* 1. HEADER DE LA TARJETA */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white">
         <div className="flex items-center space-x-3">
-          {/* Foto de perfil redonda pequeña */}
           <img 
             src="https://i.pinimg.com/originals/7f/f7/9f/7ff79ff3d15d53055bdf87200223eb83.jpg" 
             alt="Perfil" 
@@ -19,7 +25,6 @@ export default function SocialCard() {
           </div>
         </div>
 
-        {/* Logo de Instagram pequeño en la esquina superior */}
         <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200 p-0.5 shadow-sm">
           <img 
             src="https://i.pinimg.com/originals/02/db/2f/02db2f2ed9be36a9fc107c692ce296e0.jpg" 
@@ -38,32 +43,30 @@ export default function SocialCard() {
         />
       </div>
 
-      {/* 3. IMAGEN LARGA ADICIONAL DEBAJO DE LA PUBLICACIÓN */}
-      <div className="w-full h-36 bg-gray-50 border-t border-gray-100 overflow-hidden">
-        <img 
-          src="https://i.pinimg.com/1200x/46/c5/c4/46c5c43aca5c648cf79ebfe0897698c9.jpg" 
-          alt="Banner largo adicional" 
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* 4. SECCIÓN DE SEGUIDORES, SEGUIDOS Y LIKES (Diseñados como botones/tarjetas estéticas) */}
+      {/* 3. SECCIÓN DE SEGUIDORES, SEGUIDOS Y LIKES */}
       <div className="p-4 bg-gray-50 border-t border-gray-200 grid grid-cols-3 gap-3 text-center">
-        <div className="bg-white border border-gray-200 rounded-2xl p-2.5 shadow-sm hover:border-pink-500 transition cursor-pointer">
+        <div className="bg-white border border-gray-200 rounded-2xl p-2.5 shadow-sm">
           <span className="block font-extrabold text-gray-900 text-base">14.2K</span>
           <span className="text-xs text-gray-500 font-medium">Seguidores</span>
         </div>
-        <div className="bg-white border border-gray-200 rounded-2xl p-2.5 shadow-sm hover:border-pink-500 transition cursor-pointer">
+        <div className="bg-white border border-gray-200 rounded-2xl p-2.5 shadow-sm">
           <span className="block font-extrabold text-gray-900 text-base">450</span>
           <span className="text-xs text-gray-500 font-medium">Seguidos</span>
         </div>
-        <div className="bg-white border border-gray-200 rounded-2xl p-2.5 shadow-sm hover:border-pink-500 transition cursor-pointer">
-          <span className="block font-extrabold text-gray-900 text-base">1.2M</span>
-          <span className="text-xs text-gray-500 font-medium">Likes</span>
-        </div>
+        
+        {/* CUADRO INTERACTIVO DE LIKES */}
+        <button 
+          onClick={handleLike}
+          className="bg-white border border-pink-200 hover:border-pink-500 hover:bg-pink-50/50 rounded-2xl p-2.5 shadow-sm transition active:scale-95 cursor-pointer flex flex-col items-center justify-center w-full"
+        >
+          <span className="block font-extrabold text-pink-600 text-base">
+            {likes.toLocaleString()}
+          </span>
+          <span className="text-xs text-gray-500 font-medium">Likes </span>
+        </button>
       </div>
 
-      {/* 5. BOTONES DE ACCIÓN A REDES SOCIALES */}
+      {/* 4. BOTONES DE ACCIÓN A REDES SOCIALES */}
       <div className="p-4 bg-white border-t border-gray-200 space-y-2.5">
         <a 
           href="#instagram" 
